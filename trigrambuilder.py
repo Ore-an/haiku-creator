@@ -8,6 +8,7 @@ from nltk.corpus import PlaintextCorpusReader
 from nltk import word_tokenize
 from collections import defaultdict
 import itertools
+from math import log
 from haikuconf import *
 from haikuutils import *
 
@@ -58,7 +59,7 @@ def trigram_prob(tri_counts):
         # TODO: Change the grouping and counting hack to something better
 
         for j in grouped_trig[i]:
-            tri_prob[j] = tri_counts[j]/tri_tot_count
+            tri_prob[j] = log(tri_counts[j]) - log(tri_tot_count)
 
 
     return tri_prob
