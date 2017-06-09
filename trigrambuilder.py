@@ -35,8 +35,8 @@ def count_trigrams(inputdata):
 def trigram_smooth(counts):
     '''Does alpha smoothing so as to accommodate for unseen trigrams. Accepts a dictionary of counts.'''
 
-    for bigram in itertools.product(i2w.keys(), repeat=2):
-        for word in i2w.keys():
+    for bigram in itertools.product(w2i.values(), repeat=2):
+        for word in w2i.values():
             trigram = bigram + (word,)
             counts[tuple(trigram)] += ALPHA
 
