@@ -35,8 +35,8 @@ def count_trigrams(inputdata):
 def trigram_smooth(counts):
     '''Does alpha smoothing so as to accommodate for unseen trigrams. Accepts a dictionary of counts.'''
 
-    for bigram in itertools.product(w2i.keys(), repeat=2):
-        for word in w2i.keys():
+    for bigram in itertools.product(i2w.keys(), repeat=2):
+        for word in i2w.keys():
             trigram = bigram + (word,)
             counts[tuple(trigram)] += ALPHA
 
@@ -67,10 +67,10 @@ def trigram_prob(tri_counts):
     return tri_prob
 
 
-
+wordlist = []
 for file in corpus.fileids():
     filewords = list(corpus.words(fileids = file))
-    wordlist = [w2i.get(w.lower()) for w in filewords if w2i.get(w.lower()) is not None]
+    wordlist.extend([w2i.get(w.lower()) for w in filewords if w2i.get(w.lower()) is not None])
 
 tri_counts = count_trigrams(wordlist)
 if SMOOTH > 0:
