@@ -51,7 +51,7 @@ def group_trig(trig_dict):
 
 def trigram_prob(tri_counts):
     '''Calculates probabilities for the trigrams by grouping them by condition'''
-    tri_prob = {}
+    tri_prob = defaultdict(dict)
     grouped_trig = group_trig(tri_counts)
 
     # sums all the counts for condition and then calculates probabilities
@@ -61,7 +61,7 @@ def trigram_prob(tri_counts):
         # TODO: Change the grouping and counting hack to something better
 
         for j in grouped_trig[i]:
-            tri_prob[j] = log(tri_counts[j]) - log(tri_tot_count)
+            tri_prob[i][j[2]] = log(tri_counts[j]) - log(tri_tot_count)
 
 
     return tri_prob
