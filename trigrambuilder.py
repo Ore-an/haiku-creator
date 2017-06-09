@@ -13,6 +13,7 @@ from haikuconf import *
 from haikuutils import *
 
 """ Creates an ngram language model from a corpus of texts
+    Needs large amount of RAM to do alpha smoothing, remove it in the configuration file if not available
 """
 
 #Load corpus
